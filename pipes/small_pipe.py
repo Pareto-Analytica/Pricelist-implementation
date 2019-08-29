@@ -5,7 +5,7 @@ from common import Pipe, SMALL_PIPE_NAME, SMALL_MODEL_JANUARY_DECREASE_KEY, \
     NEW_REAL_PRICE_KEY, YEAR_KEY, NEW_ROUNDED_PRICE_KEY, round_to_nearest_hundred, CURRENT_DATE_KEY, SMALL_PIPE_YEAR, \
     ENTERING_PRICE_INFIX_DIGIT, FIRST_MONITOR_INFIX_DIGIT, SMALL_PIPE_THERE_IS_NEW_CAR_PRICE, \
     SMALL_PIPE_LAST_MONTH_PRICE_EXISTS, SMALL_PIPE_SHOULD_BE_CHECKED_MANUALLY, LAST_PRICE_SAVE_KEY, \
-    SHOULD_BE_CHECKED_MANUALLY, INFIX, PipeHistory
+    SHOULD_BE_CHECKED_MANUALLY, INFIX_KEY, PipeHistory, MINIMAL_PRICE_TO_CALCULATE_KEY, SMALLER_THAN_MINIMAL_KEY
 
 
 class SmallPipe(Pipe):
@@ -16,6 +16,7 @@ class SmallPipe(Pipe):
         self.month_decrease = float(config[SMALL_MODEL_MONTH_DECREASE_KEY])
         self.max_diff = float(config[SMALL_MODEL_MAX_DIFF_KEY])
         self.file_date = config[CURRENT_DATE_KEY]
+        self.minimal_price_to_calculate = float(config[MINIMAL_PRICE_TO_CALCULATE_KEY])
 
     def validate(self, model):
         return True
@@ -75,7 +76,9 @@ class SmallPipe(Pipe):
                 NEW_ROUNDED_PRICE_KEY: round_to_nearest_hundred(year.new_price),
                 LAST_PRICE_SAVE_KEY: year.last_price,
                 SHOULD_BE_CHECKED_MANUALLY: year.should_be_checked_manually,
-                INFIX: ''.join([str(i) for i in year.infix])
+                INFIX_KEY: ''.join([str(i) for i in year.infix])
             }
+            if year.new_price:
+                row[SMALLER_THAN_MINIMAL_KEY] = year.new_price < self.minimal_price_to_calculate
             rows.append(row)
         return rows

@@ -12,7 +12,9 @@ from common import Pipe, Model, ModelYear, BIG_PIPE_NAME, FIRST_MONITOR_MIN_KEY,
     SECOND_MONITOR_DOWN_INFIX_DIGIT, DEFAULT_INFIX_DIGIT_VALUE, SECOND_MONITOR_DID_CAR_PRICE_CHANGE_INFIX_DIGIT, \
     SECOND_MONITOR_CHANGED_CAR_WITH_LOWER_YEAR, SECOND_MONITOR_CHANGED_CAR_TWICE, \
     SECOND_MONITOR_CHANGED_CAR_WITH_HIGHER_YEAR, SECOND_MONITOR_CHECK_INFIX_DIGIT, \
-    SECOND_MONITOR_CHECK_FIXED_AND_SMALLER, SECOND_MONITOR_CHECK_FIXED_AND_BIGGER, SHOULD_BE_CHECKED_MANUALLY, INFIX
+    SECOND_MONITOR_CHECK_FIXED_AND_SMALLER, SECOND_MONITOR_CHECK_FIXED_AND_BIGGER, SHOULD_BE_CHECKED_MANUALLY, \
+    INFIX_KEY, \
+    ROUND_DIGITS, SMALLER_THAN_MINIMAL_KEY
 
 
 def get_year_index(years, year_to_find):
@@ -144,7 +146,9 @@ class BigPipe(Pipe):
             row[ITEMS_AMOUNT_SAVE_KEY] = year.items_amount
             row[STDEV_SAVE_KEY] = year.stdev
             row[SHOULD_BE_CHECKED_MANUALLY] = year.should_be_checked_manually
-            row[INFIX] = ''.join([str(i) for i in year.infix])
+            if year.new_price:
+                row[SMALLER_THAN_MINIMAL_KEY] = year.new_price < self.minimal_price_to_calculate
+            row[INFIX_KEY] = ''.join([str(i) for i in year.infix])
             rows.append(row)
         return rows
 
@@ -203,7 +207,7 @@ class BigPipe(Pipe):
         for i in range(reference_index, len(years) - 1, 1):
             smaller = years[i]
             bigger = years[i + 1]
-            ratio = bigger.first_monitor_price / smaller.second_monitor_price
+            ratio = round(bigger.first_monitor_price / smaller.second_monitor_price, ROUND_DIGITS)
             self.second_monitor_calculate_years(model, ratio, bigger, smaller, bigger, SECOND_MONITOR_UP_INFIX_DIGIT)
         # Going from biggest items amount down
         for i in range(reference_index, 0, -1):
@@ -244,7 +248,7 @@ class BigPipe(Pipe):
 
     def second_monitor_validate_years_diff_after(self, model, years):
         for i in range(len(years) - 1):
-            ratio = years[i + 1].second_monitor_price / years[i].second_monitor_price
+            ratio = round(years[i + 1].second_monitor_price / years[i].second_monitor_price, ROUND_DIGITS)
             second_monitor_max, second_monitor_min = self.get_min_max(years[i + 1], model, years[i])
             if not (second_monitor_min <= ratio <= second_monitor_max):
                 if is_first_stronger_than_second(years[i], years[i + 1]):
