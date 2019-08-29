@@ -25,30 +25,32 @@ We'll split the running scenario:
 ### Configuration Explained
 **IMPORTANT**: All the inserted files has to be **csv** and not **xlsx**
 1. Date File Path: Self explanatory 
-Data File Path: Self explanatory 
-Family File Path: Self explanatory 
-File Data Base Path: Self explanatory 
-Output Csv File Path: Self explanatory 
-First Monitor Minimal From Last Month In Percentage: **In big pipe, monitor 1, a certain precentage is used for defining minimal and maximal prices based on last month. This is it, insert it as a precentage out of 1 (0.05 for example)**
-Minimal Day In Month: **We valdiate the date of the date file is bigger than certain date in the current month**
-First Monitor Flag Model + Year Is Bigger Than Last Month: **Minimal amount of months that the months are bigger in sequence to actually increase the price** 
-Small Model January Reduction: Self explanatory
-Small Model February Reduction: Self explanatory
-Small Model Other Months Reduction: Self explanatory
-Small Model Maximal Percentage Than Last Month: **Same as "First Monitor Minimal From Last Month In Percentage", just in small pipe**
-Minimal Price To Calculate From: **Beneath that value, the column "Smaller Than Minimal" in output file will be True**
+1. Data File Path: Self explanatory 
+1. Family File Path: Self explanatory 
+1. File Data Base Path: Self explanatory 
+1. Output Csv File Path: Self explanatory 
+1. First Monitor Minimal From Last Month In Percentage: **In big pipe, monitor 1, a certain precentage is used for defining minimal and maximal prices based on last month. This is it, insert it as a precentage out of 1 (0.05 for example)**
+1. Minimal Day In Month: **We valdiate the date of the date file is bigger than certain date in the current month**
+1. First Monitor Flag Model + Year Is Bigger Than Last Month: **Minimal amount of months that the months are bigger in sequence to actually increase the price** 
+1. Small Model January Reduction: Self explanatory
+1. Small Model February Reduction: Self explanatory
+1. Small Model Other Months Reduction: Self explanatory
+1. Small Model Maximal Percentage Than Last Month: **Same as "First Monitor Minimal From Last Month In Percentage", just in small pipe**
+1. Minimal Price To Calculate From: **Beneath that value, the column "Smaller Than Minimal" in output file will be True**
 
 Config example:
-Date File Path: .\\data\\Stat_Prices_ClacTime.csv
-Data File Path: .\\data\\All_Cars_List.csv
-Family File Path: .\\data\\InfoByFamily_CSV.csv
-File Data Base Path: .\\data\\FileData.json
-Output Csv File Path: .\\data\\output.csv
-First Monitor Minimal From Last Month In Percentage: 0.05
-Minimal Day In Month: 1
-First Monitor Flag Model + Year Is Bigger Than Last Month: 3
-Small Model January Reduction: 0.4
-Small Model February Reduction: 0.3
-Small Model Other Months Reduction: 0.03
-Small Model Maximal Percentage Than Last Month: 0.05
-Minimal Price To Calculate From: 10000
+`<addr>`
+1. Date File Path: .\\data\\Stat_Prices_ClacTime.csv
+1. Data File Path: .\\data\\All_Cars_List.csv
+1. Family File Path: .\\data\\InfoByFamily_CSV.csv
+1. File Data Base Path: .\\data\\FileData.json
+1. Output Csv File Path: .\\data\\output.csv
+1. First Monitor Minimal From Last Month In Percentage: 0.05
+1. Minimal Day In Month: 1
+1. First Monitor Flag Model + Year Is Bigger Than Last Month: 3
+1. Small Model January Reduction: 0.4
+1. Small Model February Reduction: 0.3
+1. Small Model Other Months Reduction: 0.03
+1. Small Model Maximal Percentage Than Last Month: 0.05
+1. Minimal Price To Calculate From: 10000
+`</addr>`
