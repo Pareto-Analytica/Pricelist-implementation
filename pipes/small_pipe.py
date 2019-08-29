@@ -78,7 +78,7 @@ class SmallPipe(Pipe):
                 SHOULD_BE_CHECKED_MANUALLY: year.should_be_checked_manually,
                 INFIX_KEY: ''.join([str(i) for i in year.infix])
             }
-            if year.new_price:
-                row[SMALLER_THAN_MINIMAL_KEY] = year.new_price < self.minimal_price_to_calculate
+            if year.new_price and year.new_price < self.minimal_price_to_calculate:
+                row[SMALLER_THAN_MINIMAL_KEY] = True
             rows.append(row)
         return rows

@@ -146,8 +146,8 @@ class BigPipe(Pipe):
             row[ITEMS_AMOUNT_SAVE_KEY] = year.items_amount
             row[STDEV_SAVE_KEY] = year.stdev
             row[SHOULD_BE_CHECKED_MANUALLY] = year.should_be_checked_manually
-            if year.new_price:
-                row[SMALLER_THAN_MINIMAL_KEY] = year.new_price < self.minimal_price_to_calculate
+            if year.new_price and year.new_price < self.minimal_price_to_calculate:
+                row[SMALLER_THAN_MINIMAL_KEY] = True
             row[INFIX_KEY] = ''.join([str(i) for i in year.infix])
             rows.append(row)
         return rows
