@@ -39,7 +39,7 @@ We'll split the running scenario:
 1. Minimal Price To Calculate From: **Beneath that value, the column "Smaller Than Minimal" in output file will be True**
 
 Config example:
-`
+```
 Date File Path: .\\data\\Stat_Prices_ClacTime.csv
 Data File Path: .\\data\\All_Cars_List.csv
 Family File Path: .\\data\\InfoByFamily_CSV.csv
@@ -53,4 +53,4 @@ Small Model February Reduction: 0.3
 Small Model Other Months Reduction: 0.03
 Small Model Maximal Percentage Than Last Month: 0.05
 Minimal Price To Calculate From: 10000
-`
+```
