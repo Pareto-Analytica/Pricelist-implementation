@@ -39,18 +39,18 @@ We'll split the running scenario:
 1. Minimal Price To Calculate From: **Beneath that value, the column "Smaller Than Minimal" in output file will be True**
 
 Config example:
-`<addr>`
-1. Date File Path: .\\data\\Stat_Prices_ClacTime.csv
-1. Data File Path: .\\data\\All_Cars_List.csv
-1. Family File Path: .\\data\\InfoByFamily_CSV.csv
-1. File Data Base Path: .\\data\\FileData.json
-1. Output Csv File Path: .\\data\\output.csv
-1. First Monitor Minimal From Last Month In Percentage: 0.05
-1. Minimal Day In Month: 1
-1. First Monitor Flag Model + Year Is Bigger Than Last Month: 3
-1. Small Model January Reduction: 0.4
-1. Small Model February Reduction: 0.3
-1. Small Model Other Months Reduction: 0.03
-1. Small Model Maximal Percentage Than Last Month: 0.05
-1. Minimal Price To Calculate From: 10000
-`</addr>`
+`
+Date File Path: .\\data\\Stat_Prices_ClacTime.csv
+Data File Path: .\\data\\All_Cars_List.csv
+Family File Path: .\\data\\InfoByFamily_CSV.csv
+File Data Base Path: .\\data\\FileData.json
+Output Csv File Path: .\\data\\output.csv
+First Monitor Minimal From Last Month In Percentage: 0.05
+Minimal Day In Month: 1
+First Monitor Flag Model + Year Is Bigger Than Last Month: 3
+Small Model January Reduction: 0.4
+Small Model February Reduction: 0.3
+Small Model Other Months Reduction: 0.03
+Small Model Maximal Percentage Than Last Month: 0.05
+Minimal Price To Calculate From: 10000
+`
