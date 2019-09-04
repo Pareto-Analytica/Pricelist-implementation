@@ -18,7 +18,7 @@ def get_and_validate_input_date(config):
             time = datetime.strptime(time_row[0], '%d/%m/%Y %H:%M:%S')
         except Exception as e:
             time = datetime.strptime(time_row[0], '%d/%m/%Y %H:%M')
-        minimal_time = datetime.now().replace(month=6, day=int(config[MINIMAL_DAY_IN_MONTH_KEY]), hour=0, minute=0)
+        minimal_time = datetime.now().replace(month=5, day=int(config[MINIMAL_DAY_IN_MONTH_KEY]), hour=0, minute=0)
         if time < minimal_time:
             raise Exception(
                 "Read file date is smaller than the minimal date which is : {} ".format(minimal_time.isoformat()))

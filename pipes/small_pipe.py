@@ -43,7 +43,7 @@ class SmallPipe(Pipe):
                     reduction = (1 - model.family_data.first_year_reduction) * (
                             (1 - model.family_data.avg_reduction_annually) ** year_diff)
                     price = year.new_car_price * reduction
-                    price = price * (1 + month * model.family_data.p_age)
+                    price = price * (1 + (month-1) * model.family_data.p_age)
             else:
                 if year.last_price:
                     year.infix[FIRST_MONITOR_INFIX_DIGIT] = SMALL_PIPE_LAST_MONTH_PRICE_EXISTS

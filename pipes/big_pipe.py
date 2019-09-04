@@ -177,18 +177,16 @@ class BigPipe(Pipe):
                     year.bigger_flag_amount = 0
                     year.infix[FIRST_MONITOR_INFIX_DIGIT] = FIRST_MONITOR_SMALLER_THAN_VALID
                 elif curr_price > max_price:
-
+                    self.first_monitor_flag += 1
                     year.infix[FIRST_MONITOR_INFIX_DIGIT] = FIRST_MONITOR_BIGGER_THAN_VALID
                     if year.bigger_flag_amount <= self.first_monitor_flag:
                         year.first_monitor_price = max_price
-                        year.bigger_flag_amount += 1
                     else:
                         bigger_max = max_price * (1 + self.first_monitor_min)
                         year.min_price = max_price
                         year.max_price = bigger_max
                         if curr_price > bigger_max:
                             year.first_monitor_price = bigger_max
-                            year.bigger_flag_amount += 1
                         else:
                             year.first_monitor_price = curr_price
                             year.bigger_flag_amount = 0
