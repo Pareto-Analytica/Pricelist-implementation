@@ -111,15 +111,6 @@ class BigPipe(Pipe):
         for year_num, year in model.years.items():
             year.new_price = year.second_monitor_price
 
-        for year_num, year in model.years.items():
-            print(
-                "Model : {} Year : {} First Monitor : {}    Second Monitor : {} Items : {} Should be checked manually : {}".format(
-                    model.id, year_num,
-                    int(year.first_monitor_price),
-                    int(year.second_monitor_price),
-                    year.items_amount,
-                    year.should_be_checked_manually))
-
     def save_and_get_row(self, model):
         rows = []
         for year_num, year in model.years.items():
@@ -177,9 +168,9 @@ class BigPipe(Pipe):
                     year.bigger_flag_amount = 0
                     year.infix[FIRST_MONITOR_INFIX_DIGIT] = FIRST_MONITOR_SMALLER_THAN_VALID
                 elif curr_price > max_price:
-                    self.first_monitor_flag += 1
+                    year.bigger_flag_amount += 1
                     year.infix[FIRST_MONITOR_INFIX_DIGIT] = FIRST_MONITOR_BIGGER_THAN_VALID
-                    if year.bigger_flag_amount <= self.first_monitor_flag:
+                    if year.bigger_flag_amount < self.first_monitor_flag:
                         year.first_monitor_price = max_price
                     else:
                         bigger_max = max_price * (1 + self.first_monitor_min)
@@ -288,7 +279,6 @@ class BigPipe(Pipe):
             year.infix[ENTERING_PRICE_INFIX_DIGIT] = THIS_MONTH_HAS_STATISTIC_PRICE
             return
         if self.was_big_model_in_past(year):
-            # print(" Model : {} , Year : {} is in based on past of himself".format(model.id, year.year))
             year.entering_price = year.last_price * (1 + model.family_data.p_age)
             year.infix[ENTERING_PRICE_INFIX_DIGIT] = PAST_MONTH_HAD_STATISTIC_PRICE
             return
